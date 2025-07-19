@@ -200,6 +200,23 @@ header h2 {
   .coffee {
     height: 70%;
   }
+
+  .customize-section div {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Align each label with radio and text side-by-side */
+  .customize-section div label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .customize-section div input[type="radio"] {
+    margin: 0;
+  }
 }
 
 @media (max-width: 480px) {
