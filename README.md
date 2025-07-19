@@ -6,7 +6,7 @@
 
 ## 🚀 Live Demo
 
-🌐 [Try it Now](https://brew-buddy-67bu1duuw-karantulsanis-projects.vercel.app/)
+🌐 [Try it Now](https://brew-buddy-khaki.vercel.app/)
 
 ---
 
