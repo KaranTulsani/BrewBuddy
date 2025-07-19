@@ -43,3 +43,5 @@ This project is protected.
 You **must request permission** from the author before copying, modifying, or distributing any part of this codebase or design.
 
 > Contact: [https://www.linkedin.com/in/karan-tulsani-63b48b282/]
+>
+> ---
