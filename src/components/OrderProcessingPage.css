@@ -1,0 +1,341 @@
+/* Import Google Fonts for consistency */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;500&family=Roboto+Mono&display=swap');
+
+/* Ensure the root HTML and body elements fill the viewport and have a default background */
+/* This should ideally be in a global CSS file like src/index.css or src/App.css */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f7f3ed; /* Consistent light cream background */
+  font-family: 'Roboto', sans-serif;
+  color: #3b2c2c;
+  box-sizing: border-box;
+}
+
+.order-processing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Align content to start (top) to allow for scrolling if content is long */
+  
+  /* Crucial for filling the space */
+  width: 100%;
+  min-height: 100vh; /* Ensure it's at least viewport height */
+  
+  /* This is the background for the entire page content area */
+  background-color: #f7f3ed; /* Light cream background */
+  
+  padding: 2rem; /* Padding around the content */
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  color: #3b2c2c;
+  box-sizing: border-box;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Loading state for initial data fetch */
+.order-processing-container.loading {
+  justify-content: center; /* Center content vertically when loading */
+  font-size: 1.5rem;
+  color: #6a5e5e;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #d17a22;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-top: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+/* --- Visualizer Section Styles --- */
+.visualizer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; /* Take full width of its flex container */
+  max-width: 600px; /* Limit the content width for readability */
+  background-color: #ffffff; /* White background for the content card */
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  margin-bottom: 2rem; /* Add some space below the card */
+}
+
+.visualizer-section h2 {
+  font-family: 'Playfair Display', serif;
+  color: #3b2c2c;
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+  letter-spacing: -0.5px;
+}
+
+.visualizer-section .order-notes {
+  font-size: 1.1rem;
+  color: #6a5e5e;
+  margin-bottom: 2.5rem;
+  font-style: italic;
+}
+
+.coffee-visualizer-wrapper {
+  position: relative;
+  width: 220px; /* Slightly larger wrapper */
+  height: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Align cup to bottom of wrapper */
+  margin: 2rem auto;
+}
+
+.coffee-visualizer {
+  position: absolute; /* Position within wrapper */
+  bottom: 0;
+  width: 200px;
+  height: 250px;
+  border: 4px solid #3b2c2c;
+  border-radius: 10px 10px 50px 50px; /* Rounded bottom for cup shape */
+  overflow: hidden; /* Crucial for liquid fill effect */
+  background-color: #e0d9d0; /* Empty cup color */
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.15); /* Inner shadow for depth */
+  display: flex;
+  align-items: flex-end; /* Ensure liquid starts from bottom */
+}
+
+/* Cup Handle (using pseudo-element) */
+.coffee-visualizer .cup::before {
+  content: '';
+  position: absolute;
+  right: -55px; /* Position to the right of the cup */
+  top: 60px; /* Adjust vertical position */
+  width: 70px; /* Width of the handle */
+  height: 90px; /* Height of the handle */
+  border: 4px solid #3b2c2c;
+  border-left: none; /* No left border to create the opening */
+  border-radius: 0 60px 60px 0; /* Rounded right side */
+  transform: scaleY(0.8); /* Slightly squish vertically for a natural look */
+  z-index: 1; /* Ensure handle is above cup body */
+}
+
+.coffee-visualizer .liquid {
+  width: 100%;
+  /* Gradient for coffee color, from dark brown to lighter brown */
+  background: linear-gradient(to top, #6F4E37, #A0522D);
+  /* Smooth transition for height changes, creating the fill animation */
+  transition: height 0.05s linear; /* Fast, linear transition for filling */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 0; /* Ensure liquid is behind progress text */
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem; /* Larger progress text */
+  font-weight: bold;
+  color: #3b2c2c; /* Dark coffee color for text */
+  z-index: 2; /* Ensure text is above liquid */
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* Subtle text shadow */
+}
+
+.brew-tip {
+  font-style: italic;
+  color: #888;
+  margin-top: 2.5rem;
+  font-size: 1rem;
+  max-width: 400px;
+  line-height: 1.5;
+}
+
+/* --- Order Ready Section Styles --- */
+.order-ready-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px; /* Max width for the ready card */
+  background-color: #ffffff; /* White background for the content card */
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+}
+
+.order-ready-section h2 {
+  font-family: 'Playfair Display', serif;
+  color: #3b2c2c;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.order-ready-card {
+  /* This div is inside order-ready-section, so its background is already white */
+  /* Remove its own background-color and box-shadow if they are redundant */
+  /* Keeping it for now as it provides a distinct inner card */
+  background-color: #ffffff;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px; /* This limits the inner card's width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  border: 1px solid #e0e0e0;
+}
+
+.cup-icon {
+  font-size: 4.5rem;
+  margin-bottom: 0.5rem;
+  color: #d17a22;
+  animation: bounceIn 0.8s ease-out;
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  60% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+.order-ready-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: #3b2c2c;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.order-ready-card .show-at-counter {
+  font-size: 1.1rem;
+  color: #6a5e5e;
+  margin-bottom: 0.5rem;
+}
+
+.order-id {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #d17a22;
+  background-color: #ffe0b2;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  letter-spacing: 1px;
+  user-select: all;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.qr-code-wrapper {
+  padding: 1rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #f0f0f0;
+}
+
+.qr-code-wrapper svg {
+  display: block;
+}
+
+.enjoy-message {
+  font-size: 1.3rem;
+  color: #3b2c2c;
+  font-weight: 500;
+  margin-top: 1.5rem;
+}
+
+.new-order-btn {
+  background-color: #d17a22;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 2.5rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.new-order-btn:hover {
+  background-color: #b8691b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .order-processing-container {
+    padding: 1rem;
+  }
+
+  .visualizer-section, .order-ready-section {
+    padding: 1.5rem;
+    max-width: 95%;
+  }
+
+  .visualizer-section h2, .order-ready-section h2 {
+    font-size: 2rem;
+  }
+
+  .coffee-visualizer-wrapper {
+    width: 180px;
+    height: 230px;
+  }
+
+  .coffee-visualizer {
+    width: 160px;
+    height: 200px;
+  }
+
+  .progress-text {
+    font-size: 1.5rem;
+  }
+
+  .order-id {
+    font-size: 1.4rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .qr-code-wrapper svg {
+    width: 150px !important;
+    height: 150px !important;
+  }
+
+  .new-order-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .visualizer-section h2, .order-ready-section h2 {
+    font-size: 1.8rem;
+  }
+  .order-ready-card {
+    padding: 1.5rem 1rem;
+  }
+  .order-id {
+    font-size: 1.2rem;
+  }
+}

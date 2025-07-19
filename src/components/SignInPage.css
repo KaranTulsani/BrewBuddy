@@ -1,0 +1,222 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;500&display=swap');
+
+/* Basic Reset & Body Styles */
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f7f3ed; /* Soft cream background for consistency */
+}
+
+.login-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  /* The background for the whole container, if not covered by children */
+  background-color: #f7f3ed;
+  overflow: hidden; /* Ensure nothing overflows */
+}
+
+.login-image {
+  flex: 1.2; /* Give more space to the image side */
+  position: relative;
+  background-color: #8B4513; /* Fallback/background for the coffee beans side */
+  display: flex; /* To position the image */
+  align-items: center;
+  justify-content: center;
+}
+
+.login-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the div */
+  object-position: center right; /* Adjust if needed to focus on beans */
+  /* Optional: filter to enhance mood, e.g., sepia or saturation */
+  filter: saturate(1.1) brightness(0.9);
+}
+
+/* Optional: If you want a subtle gradient overlay on the image side */
+.login-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0)); /* Very subtle fade */
+}
+
+
+.login-form {
+  flex: 1; /* Give less space to the form side */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 2rem; /* More vertical padding */
+  background-color: #ffffff; /* Crisp white for the form container */
+  /* No direct box-shadow here, will be on elements inside */
+  position: relative; /* For potential absolute positioning of decorative elements */
+}
+
+/* Decorative border/shadow if desired for the form block */
+.login-form::before {
+  content: '';
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  bottom: 2rem;
+  left: 2rem;
+  border: 1px solid #e0e0e0; /* Subtle light border */
+  border-radius: 10px;
+  pointer-events: none; /* Allows clicks to pass through */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Soft, larger shadow */
+  z-index: 0;
+}
+
+.login-form > * {
+  z-index: 1; /* Ensure content is above the pseudo-element */
+}
+
+
+.login-form h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem; /* Larger, more inviting title */
+  color: #3b2c2c; /* Deep coffee brown */
+  margin-bottom: 0.8rem;
+  text-align: center;
+  letter-spacing: -0.5px;
+}
+
+.login-form p {
+  font-size: 1.15rem; /* Slightly larger description */
+  color: #6a5e5e; /* Softer brown */
+  margin-bottom: 3rem; /* More space before button */
+  text-align: center;
+  line-height: 1.5;
+}
+
+.signin-button.google {
+  background-color: #d17a22; /* Warm orange/brown */
+  color: white;
+  border: none;
+  padding: 1.1rem 2rem; /* Generous padding */
+  font-size: 1.1rem;
+  border-radius: 50px; /* Fully rounded, pill shape */
+  width: 90%; /* Adjust width */
+  max-width: 320px; /* Consistent max width */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Soft initial shadow */
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.signin-button.google:hover {
+  background-color: #b8691b; /* Darker on hover */
+  transform: translateY(-3px); /* More pronounced lift */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+}
+
+.signin-button.google:active {
+  transform: translateY(0); /* Press down effect */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.signin-button.google:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.signin-button.google svg {
+  vertical-align: middle; /* Align icon better */
+}
+
+/* Error message styling */
+.error-message {
+    background-color: #fef2f2; /* Very light red */
+    color: #e53935; /* Strong red text */
+    border: 1px solid #ef9a9a;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    text-align: center;
+    width: 90%;
+    max-width: 350px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 992px) { /* Adjust breakpoint for tablets */
+  .login-container {
+    flex-direction: column; /* Stack vertically on smaller screens */
+  }
+
+  .login-image {
+    width: 100%;
+    height: 350px; /* Fixed height for image on mobile/tablet */
+    flex: none; /* Remove flex grow */
+  }
+  .login-image img {
+    object-position: center; /* Center image on mobile */
+  }
+
+  .login-form {
+    width: 100%;
+    padding: 2.5rem 1.5rem;
+    flex: none; /* Remove flex grow */
+    border-radius: 0; /* No border radius on top/bottom when stacked */
+  }
+   .login-form::before { /* Adjust decorative border for mobile */
+    top: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+  }
+
+  .login-form h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .login-form p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .signin-button.google {
+    width: 85%;
+    max-width: 280px;
+    padding: 1rem 1.5rem;
+  }
+}
+
+@media (max-width: 576px) { /* Smaller mobile screens */
+  .login-image {
+    height: 250px;
+  }
+  .login-form {
+    padding: 2rem 1rem;
+  }
+  .login-form h1 {
+    font-size: 2rem;
+  }
+  .signin-button.google {
+    font-size: 1rem;
+    padding: 0.9rem 1.2rem;
+  }
+  .error-message {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+}

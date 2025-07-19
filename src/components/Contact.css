@@ -1,0 +1,47 @@
+.contact-footer {
+  background-color: #6b4f3b; /* Coffee brown */
+  color: #fff;
+  padding: 40px 20px;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+}
+
+.contact-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact-footer h2 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+}
+
+.contact-footer p {
+  font-size: 1.1rem;
+  margin: 10px 0;
+  font-family: "DM Sans", sans-serif;
+}
+
+.collab-text {
+  margin-top: 20px;
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.contact-button {
+  margin-top: 25px;
+  background-color: #fff;
+  color: #000;
+  padding: 10px 20px;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contact-button:hover {
+  background-color: #222;
+  color: #fff;
+}

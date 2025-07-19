@@ -1,0 +1,52 @@
+/* BrewTips.css */
+
+.brew-tips {
+  width: 100vw;
+  min-height: 100vh;
+  padding: 60px 80px;
+  background-color: white;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+h1 {
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  font-size: 3rem;
+  margin-bottom: 60px;
+  color: black;
+}
+
+.tip-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 80px;
+  gap: 60px;
+  color: black;
+  flex-wrap: wrap;
+}
+
+.tip-section.reverse {
+  flex-direction: row-reverse;
+}
+
+.tip-text {
+  flex: 1;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.7;
+}
+
+.tip-text h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.tip-img {
+  flex-shrink: 0;
+  width: 350px;
+  height: auto;
+  border-radius: 14px;
+  object-fit: cover;
+}
