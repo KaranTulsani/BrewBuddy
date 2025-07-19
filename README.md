@@ -1,12 +1,45 @@
-# React + Vite
+# ☕ BrewBuddy
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**BrewBuddy** is your intelligent coffee ordering companion, delivering a premium café-like experience right from your screen. With live brewing updates, personalized suggestions, loyalty rewards, and Firebase-backed reliability — BrewBuddy makes every sip smarter.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Live Demo
 
-## Expanding the ESLint configuration
+🌐 [Try it Now](https://brew-buddy-67bu1duuw-karantulsanis-projects.vercel.app/)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📸 Features
+
+- 🔐 **Google Sign-In** via Firebase Authentication  
+- 🎬 **Live Brewing Status** tracker with fun, animated steps (Order Received → Beans Roasting → Coffee Brewing → Ready for Pickup)  
+- ☁️ **Realtime Firestore Integration** for order management and loyalty points  
+- 💬 **Rotating Coffee Tips & Fun Facts** to educate and entertain users  
+- 🏅 **Loyalty Points System**: Earn rewards with every order  
+- 📱 **Mobile-Friendly Design**  
+- 📷 **QR Code Generation** after order placement for pickup convenience
+
+---
+
+## 🛠️ Tech Stack
+
+| Frontend     | Backend / Infra     | Authentication & Database |
+|--------------|---------------------|----------------------------|
+| React        | Vite (build tool)   | Firebase Authentication    |
+| Tailwind CSS | Vercel (deployment) | Firebase Firestore         |
+
+---
+
+## 🤝 Contributions
+
+This is a personal project, and contributions are not currently open. If you have suggestions or would like to collaborate, feel free to reach out.
+
+---
+
+## 🚫 Permission
+
+This project is protected.  
+You **must request permission** from the author before copying, modifying, or distributing any part of this codebase or design.
+
+> Contact: [https://www.linkedin.com/in/karan-tulsani-63b48b282/]
