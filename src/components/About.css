@@ -1,0 +1,85 @@
+.about-page {
+  padding: 60px 80px;
+  background-color: #ffffff;
+  color: #2d2d2d;
+  font-family: "DM Sans", sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.about-title {
+  text-align: center;
+  font-size: 3rem;
+  font-family: "Playfair Display", serif;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #1a1a1a;
+}
+
+.about-subtitle {
+  background-color: #6b4f3b;
+  color: #fff;
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 40px;
+}
+
+.story-section h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.story-section p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.features-section {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.features-section h2 {
+  font-size: 2.2rem;
+  font-family: "Playfair Display", serif;
+  margin-bottom: 40px;
+}
+
+.features {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.feature-card {
+  flex: 1 1 30%;
+  background-color: #f7f3f0;
+  border: 1px solid #e0dcd6;
+  border-radius: 12px;
+  padding: 30px 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #4b2e2e;
+}
+
+.feature-card p {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.5;
+}
