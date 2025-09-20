@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 // Import Firebase modules for Firestore and Auth
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { doc, getDoc, updateDoc, setDoc, collection } from 'firebase/firestore';
+import EnhancedAIBrewAssistant from '../components/EnhancedAIBrewAssistant'; // Import the new AI assistant
 
 // IMPORTANT: Rely on the 'auth' and 'db' instances exported from your firebase.js file.
 // Ensure your firebase.js file initializes Firebase ONLY ONCE and exports these.
@@ -30,7 +31,15 @@ const OrderPage = () => {
 
   // Define prices for coffee components
   const prices = {
-    coffeeTypes: { "Espresso": 2.5, "Latte": 3.75, "Decaf": 2.25, "Select type": 0 },
+    coffeeTypes: { 
+      "Espresso": 2.5, 
+      "Latte": 3.75, 
+      "Decaf": 2.25, 
+      "Americano": 2.75, 
+      "Cappuccino": 3.25, 
+      "Mocha": 4.00,
+      "Select type": 0 
+    },
     cupSizes: { Small: 0, Medium: 0.5, Large: 1 },
     milk: { ON: 0.25, OFF: 0 }
   };
@@ -109,6 +118,30 @@ const OrderPage = () => {
     return (basePrice + sizePrice + milkPrice).toFixed(2);
   };
 
+  // --- Handle AI Recommendation Application ---
+  const handleAIRecommendation = (recommendation) => {
+    // Map AI recommendation to form values
+    const typeMapping = {
+      "Espresso": "Espresso ($2.50)",
+      "Latte": "Latte ($3.75)", 
+      "Decaf": "Decaf ($2.25)",
+      "Americano": "Americano ($2.75)",
+      "Cappuccino": "Cappuccino ($3.25)",
+      "Mocha": "Mocha ($4.00)"
+    };
+
+    setCoffeeType(typeMapping[recommendation.type] || "Select type");
+    setStrength(recommendation.strength);
+    setSugar(recommendation.sugar);
+    setMilk(recommendation.milk);
+    setCupSize(recommendation.size);
+    setNotes(`AI Recommended: ${recommendation.drink}`);
+    
+    // Show success message
+    setOrderMessage(`✨ Applied AI recommendation: ${recommendation.drink}! You can still customize it further.`);
+    setTimeout(() => setOrderMessage(''), 3000);
+  };
+
   // --- Handle Order Placement ---
   const handleOrder = async () => {
     // Ensure user is authenticated and Firestore 'db' instance is available
@@ -182,14 +215,6 @@ const OrderPage = () => {
     }
   };
 
-  // --- AI Suggestion (Coming Soon) ---
-  const getAISuggestion = () => {
-    const hour = new Date().getHours();
-    if (hour < 12) return "Morning Espresso";
-    if (hour < 17) return "Afternoon Latte";
-    return "Evening Decaf";
-  };
-
   // Display loading state while authentication is being checked
   if (isLoadingAuth) {
     return (
@@ -221,6 +246,9 @@ const OrderPage = () => {
             <option>Espresso ($2.50)</option>
             <option>Latte ($3.75)</option>
             <option>Decaf ($2.25)</option>
+            <option>Americano ($2.75)</option>
+            <option>Cappuccino ($3.25)</option>
+            <option>Mocha ($4.00)</option>
           </select>
 
           <label>Strength:</label>
@@ -237,7 +265,7 @@ const OrderPage = () => {
           </div>
 
           <label>Sugar:</label>
-          <input type="range" min="0" max="3" value={sugar} onChange={(e) => setSugar(e.target.value)} />
+          <input type="range" min="0" max="5" value={sugar} onChange={(e) => setSugar(e.target.value)} />
           {sugar} spoon(s)
 
           <label>Milk:</label>
@@ -297,17 +325,17 @@ const OrderPage = () => {
             {orderMessage.includes('Placing order') ? "Processing..." : `Order Now → $${calculateTotal()}`}
           </button>
         </div>
-
-        <div className="suggestion-box">
-          <h3>Not Sure What to Order?</h3>
-          <p>Let AI pick your perfect brew based on your mood ☕</p>
-          <p>Suggested: {getAISuggestion()} (Coming Soon)</p>
-        </div>
       </div>
 
       {/* Order Message Display */}
       {orderMessage && (
-        <div className="order-message-box">
+        <div className="order-message-box" style={{
+          margin: "1rem 0",
+          padding: "1rem",
+          borderRadius: "8px",
+          backgroundColor: orderMessage.includes('✨') ? "#e8f5e8" : "#f0f0f0",
+          border: orderMessage.includes('✨') ? "1px solid #4caf50" : "1px solid #ccc"
+        }}>
           {orderMessage}
         </div>
       )}
@@ -329,6 +357,9 @@ const OrderPage = () => {
           </button>
         </div>
       )}
+
+      {/* Enhanced AI Assistant - replaces the old suggestion box */}
+      <EnhancedAIBrewAssistant onOrderSelect={handleAIRecommendation} />
     </div>
   );
 };
